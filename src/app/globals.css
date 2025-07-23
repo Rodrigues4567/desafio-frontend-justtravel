@@ -4,5 +4,7 @@ body {
   height: 100vh;
   padding: 0px;
   margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F6F6F6;
   box-sizing: border-box;
 }
