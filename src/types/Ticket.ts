@@ -4,5 +4,12 @@ export interface Ticket {
     name: string;
     location: string;
     image: string;
-    price: number;
+    price: {
+        full: number;
+        discount: number;
+    };
+    rating: {
+        reviewsCount: number;
+        value: number;
+    };
 }
