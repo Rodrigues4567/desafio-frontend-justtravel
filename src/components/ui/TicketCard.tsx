@@ -1,12 +1,17 @@
 import { Ticket } from "@/types/Ticket";
 import { SlLocationPin } from "react-icons/sl";
 import { FaArrowRight } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
+
 
 interface Props {
   ticket: Ticket;
 }
 
 export default function TicketCard({ ticket }: Props) {
+
+    const router = useRouter();
+
     return (
         <div className="flex bg-white rounded-[4px] overflow-hidden shadow-sm hover:shadow-md transition">
 
@@ -41,7 +46,7 @@ export default function TicketCard({ ticket }: Props) {
                     R$ {ticket.price.discount.toFixed(2)}
                 </div>
 
-                <button className="flex items-center gap-[9px] mt-4 bg-[#4070F4] text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-700 transition text-sm">
+                <button className="flex items-center gap-[9px] mt-4 bg-[#4070F4] text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-700 transition text-sm" onClick={() => router.push(`/tickets/${ticket.id}`)}>
                     Saber mais <FaArrowRight />
                 </button>
             </div>

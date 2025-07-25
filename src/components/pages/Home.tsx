@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Ticket } from "@/types/Ticket";
 import axios from "axios";
 import Container from "../layout/Container";
+import Pagination from "../ui/Pagination";
 
 export default function Home() {
 
@@ -17,12 +18,18 @@ export default function Home() {
     const perPage = 6;
 
     useEffect(() => {
-        axios
-        .get("https://65b98494b71048505a8aea91.mockapi.io/api/v1/tickets")
-        .then((res) => {
-            setTickets(res.data);
-            setFiltered(res.data);
-        });
+        async function fetchTickets() {
+            try {
+                const res = await axios.get("https://65b98494b71048505a8aea91.mockapi.io/api/v1/tickets");
+                setTickets(res.data)
+                setFiltered(res.data)
+            }
+            catch(err) {
+                console.error("Erro ao buscar tickets:", err);
+            }
+        }
+
+        fetchTickets();
     }, []);
 
     useEffect(() => {
@@ -51,6 +58,8 @@ export default function Home() {
                         {currentTickets.map((ticket) => (
                             <TicketCard key={ticket.id} ticket={ticket} />
                         ))}
+
+                        <Pagination totalItems={filtered.length} perPage={perPage} currentPage={page} onPageChange={setPage} />
                     </div>
                 </div>
             </Container>
