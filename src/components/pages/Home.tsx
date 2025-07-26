@@ -11,12 +11,22 @@ import Pagination from "../ui/Pagination";
 
 export default function Home() {
 
+    // Estado para armazenar todos os ingressos vindos da API
     const [tickets, setTickets] = useState<Ticket[]>([]);
+
+    // Estado para armazenar o termo de busca digitado pelo usuário
     const [search, setSearch] = useState("");
+
+    // Estado com os ingressos filtrados com base na busca
     const [filtered, setFiltered] = useState<Ticket[]>([]);
+
+    // Estado para controlar a página atual da paginação
     const [page, setPage] = useState(1);
+
+    // Quantidade de itens por página
     const perPage = 6;
 
+    // Requisição à API
     useEffect(() => {
         async function fetchTickets() {
             try {
@@ -32,6 +42,7 @@ export default function Home() {
         fetchTickets();
     }, []);
 
+    // Filtra os ingressos sempre que o termo de busca ou a lista de ingressos mudar
     useEffect(() => {
         const term = search.toLowerCase();
         const result = tickets.filter(
@@ -43,6 +54,7 @@ export default function Home() {
         setPage(1);
     }, [search, tickets]);
 
+    // Calcula os ingressos da página atual com base na paginação
     const start = (page - 1) * perPage;
     const currentTickets = filtered.slice(start, start + perPage);
 
