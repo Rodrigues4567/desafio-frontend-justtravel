@@ -10,6 +10,7 @@ Este é o repositório do desafio frontend desenvolvido em Next.js com TypeScrip
 - Tailwind CSS
 - React Icons
 - Axios
+- API: https://65b98494b71048505a8aea91.mockapi.io/api/v1/tickets
 
 ## ⚙️ Como rodar o projeto localmente
 
